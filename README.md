@@ -3,8 +3,8 @@
 An end-to-end machine learning system that scores banking transactions in real-time, classifies them into risk levels, explains *why* a transaction looks suspicious, and recommends an action — built for the FinTech/Risk Management domain.
 
 **Live Demo:** [https://banking-fraud-detector.streamlit.app/](https://banking-fraud-detector.streamlit.app/)
-**API Docs:** _[API link — add after deployment, if deployed]_
 
+**API Docs:** **API Docs:** Available locally — see [API section](#api) below for setup instructions and example usage.
 ---
 
 ## Table of Contents
