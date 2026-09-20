@@ -3,12 +3,14 @@ Prediction pipeline: takes transaction features, returns fraud probability,
 risk level, recommended action, and top contributing reasons.
 """
 
+import os
 import joblib
 import shap
 import pandas as pd
 
-MODEL_PATH = "../models/fraud_model.joblib"
-FEATURES_PATH = "../models/feature_list.joblib"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "..", "models", "fraud_model.joblib")
+FEATURES_PATH = os.path.join(BASE_DIR, "..", "models", "feature_list.joblib")
 
 # Model aur features ek baar load karo (module import hote hi)
 _model = joblib.load(MODEL_PATH)

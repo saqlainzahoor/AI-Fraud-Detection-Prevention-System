@@ -5,7 +5,9 @@ Bank Officer Dashboard (Streamlit)
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(BASE_DIR, '..', 'src'))
 
 import streamlit as st
 import pandas as pd
@@ -30,8 +32,8 @@ page = st.sidebar.radio(
 # --- Load model metadata (for overview stats) ---
 @st.cache_resource
 def load_model_info():
-    model = joblib.load("../models/fraud_model.joblib")
-    features = joblib.load("../models/feature_list.joblib")
+    model = joblib.load(os.path.join(BASE_DIR, "..", "models", "fraud_model.joblib"))
+    features = joblib.load(os.path.join(BASE_DIR, "..", "models", "feature_list.joblib"))
     return model, features
 
 model, features = load_model_info()
@@ -104,7 +106,7 @@ elif page == "Transaction Checker":
 elif page == "Fraud Analytics":
     st.header("Fraud Analytics")
 
-    dash_data = joblib.load("../models/dashboard_data.joblib")
+    dash_data = joblib.load(os.path.join(BASE_DIR, "..", "models", "dashboard_data.joblib"))
 
     st.subheader("Fraud Rate by Transaction Type")
     type_data = pd.DataFrame({
@@ -136,7 +138,7 @@ elif page == "Fraud Analytics":
 elif page == "Model Performance":
     st.header("Model Performance")
 
-    dash_data = joblib.load("../models/dashboard_data.joblib")
+    dash_data = joblib.load(os.path.join(BASE_DIR, "..", "models", "dashboard_data.joblib"))
 
     col1, col2 = st.columns(2)
 
@@ -161,7 +163,7 @@ elif page == "Model Performance":
     st.markdown("---")
     st.subheader("Global Feature Importance (SHAP)")
     st.image(
-        "../models/shap_summary.png",
+        os.path.join(BASE_DIR, "..", "models", "shap_summary.png"),
         caption="SHAP Summary Plot — shows which features most influence fraud predictions across all transactions"
     )
 
